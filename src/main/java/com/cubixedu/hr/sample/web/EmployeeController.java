@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cubixedu.hr.sample.dto.EmployeeDto;
+import com.cubixedu.hr.sample.model.Employee;
+import com.cubixedu.hr.sample.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+	
+	@Autowired
+	private EmployeeService employeeService;
 
 	private Map<Long, EmployeeDto> employees = new HashMap<>();	
 	
@@ -87,4 +93,9 @@ public class EmployeeController {
 		employees.remove(id);
 	}
 	
+	@PostMapping("/payraise")
+	public int getPayRaisePercent(@RequestBody Employee employee) {
+		
+		return employeeService.getPayRaisePercent(employee);
+	}
 }
