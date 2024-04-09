@@ -14,7 +14,7 @@ import com.cubixedu.hr.sample.config.HrConfigProperties.Smart;
 import com.cubixedu.hr.sample.model.Employee;
 
 @Service
-public class SmartEmployeeService implements EmployeeService {
+public class SmartEmployeeService extends AbstractEmployeeService {
 
 	@Autowired
 	HrConfigProperties config;

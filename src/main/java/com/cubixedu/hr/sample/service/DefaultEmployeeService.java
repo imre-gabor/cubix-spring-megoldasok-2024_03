@@ -7,7 +7,7 @@ import com.cubixedu.hr.sample.config.HrConfigProperties;
 import com.cubixedu.hr.sample.model.Employee;
 
 @Service
-public class DefaultEmployeeService implements EmployeeService {
+public class DefaultEmployeeService extends AbstractEmployeeService {
 	@Autowired
 	HrConfigProperties config;
 
