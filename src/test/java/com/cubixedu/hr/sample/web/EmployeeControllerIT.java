@@ -84,10 +84,10 @@ public class EmployeeControllerIT {
 	@Test
 	void testThatEmployeeCannotBeUpdatedWithInvalidFields() throws Exception {
 		EmployeeDto newEmployee = new EmployeeDto(0L, "ABC", "student", 200000, LocalDateTime.of(2019, 01, 01, 8, 0, 0));
-		EmployeeDto savedEmployee = saveEmployee(newEmployee)
+		EmployeeDto savedEmployee = saveEmployee(newEmployee)				
 				.expectStatus().isOk()
 				.expectBody(EmployeeDto.class)
-				.returnResult()
+				.returnResult()				
 				.getResponseBody();
 		
 		List<EmployeeDto> employeesBefore = getAllEmployees();

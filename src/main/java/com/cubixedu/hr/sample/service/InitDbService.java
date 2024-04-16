@@ -34,14 +34,12 @@ public class InitDbService {
 	@Transactional
 	public void initDb() {
 		
-//		Position developer = positionRepository.save(new Position("fejlesztő", Qualification.UNIVERSITY));
-//		Position tester = positionRepository.save(new Position("tesztelő", Qualification.HIGH_SCHOOL));
+		Position developer = positionRepository.save(new Position("fejlesztő", Qualification.UNIVERSITY));
+		Position tester = positionRepository.save(new Position("tesztelő", Qualification.HIGH_SCHOOL));
 		
-		Employee newEmployee1 = employeeRepository.save(new Employee(null, "ssdf", "developer", 200000, LocalDateTime.now()));
-//		newEmployee1.setPosition(developer);
+		Employee newEmployee1 = employeeRepository.save(new Employee(null, "ssdf", developer, 200000, LocalDateTime.now()));
 		
-		Employee newEmployee2 = employeeRepository.save(new Employee(null, "t35", "tester", 200000, LocalDateTime.now()));
-//		newEmployee2.setPosition(tester);
+		Employee newEmployee2 = employeeRepository.save(new Employee(null, "t35", tester, 200000, LocalDateTime.now()));
 		Company newCompany = companyRepository.save(new Company(null, 10, "sdfsd", "", null));
 		newCompany.addEmployee(newEmployee2);
 		newCompany.addEmployee(newEmployee1);

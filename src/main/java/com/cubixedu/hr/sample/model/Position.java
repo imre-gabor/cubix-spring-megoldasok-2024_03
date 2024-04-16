@@ -1,8 +1,12 @@
 package com.cubixedu.hr.sample.model;
 
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Position {
@@ -13,8 +17,9 @@ public class Position {
 	private String name;
 	private Qualification qualification;
 	
-//	@OneToMany(mappedBy = "position")
-//	private List<Employee> employees;
+	
+	@OneToMany(mappedBy = "position")
+	private List<Employee> employees;
 	
 	
 	public Position() {
@@ -43,5 +48,28 @@ public class Position {
 	public void setQualification(Qualification qualification) {
 		this.qualification = qualification;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		return id == other.id;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+	
+	
 	
 }

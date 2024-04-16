@@ -22,6 +22,7 @@ import com.cubixedu.hr.sample.model.AverageSalaryByPosition;
 import com.cubixedu.hr.sample.model.Company;
 import com.cubixedu.hr.sample.repository.CompanyRepository;
 import com.cubixedu.hr.sample.service.CompanyService;
+import com.cubixedu.hr.sample.service.SalaryService;
 
 @RestController
 @RequestMapping("/api/companies")
@@ -33,11 +34,15 @@ public class CompanyController {
 	
 	private CompanyRepository companyRepository;
 	
+	private SalaryService salaryService;
+	
+
 	public CompanyController(CompanyMapper companyMapper, CompanyService companyService,
-			CompanyRepository companyRepository) {
+			CompanyRepository companyRepository, SalaryService salaryService) {
 		this.companyMapper = companyMapper;
 		this.companyService = companyService;
 		this.companyRepository = companyRepository;
+		this.salaryService = salaryService;
 	}
 
 
@@ -133,6 +138,11 @@ public class CompanyController {
 	@GetMapping("/{id}/salaryStats")
 	public List<AverageSalaryByPosition> getSalaryStatsById(@PathVariable long id) {
 		return companyRepository.findAverageSalariesByPosition(id);
+	}
+	
+	@PutMapping("/{id}/raiseMinSalary/{positionName}/{minSalary}")
+	public void updateMinSalary(@PathVariable long id, @PathVariable String positionName, @PathVariable int minSalary) {
+		salaryService.raiseMinSalary(id, positionName, minSalary);
 	}
 
 	private List<CompanyDto> mapCompanies(List<Company> companies, Optional<Boolean> full) {

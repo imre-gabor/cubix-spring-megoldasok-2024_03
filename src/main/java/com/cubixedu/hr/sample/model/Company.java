@@ -7,6 +7,7 @@ import java.util.Objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -21,6 +22,9 @@ public class Company {
 	
 	@OneToMany(mappedBy = "company")
 	private List<Employee> employees;
+	
+	@ManyToOne
+	private CompanyType companyType;
 	
 	public Company() {
 		
@@ -96,6 +100,14 @@ public class Company {
 			return false;
 		Company other = (Company) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public CompanyType getCompanyType() {
+		return companyType;
+	}
+
+	public void setCompanyType(CompanyType companyType) {
+		this.companyType = companyType;
 	}
 
 	

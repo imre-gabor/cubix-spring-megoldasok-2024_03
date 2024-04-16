@@ -17,7 +17,7 @@ public class EmployeeTLController {
 	private List<Employee> allEmployees = new ArrayList<>();
 	
 	{
-		allEmployees.add(new Employee(1L, "Kis Gábor", "osztályvezető", 100000, LocalDateTime.of(2012, 1, 1, 8, 0, 0)));
+		allEmployees.add(new Employee(1L, "Kis Gábor", null, 100000, LocalDateTime.of(2012, 1, 1, 8, 0, 0)));
 	}
 
 	@GetMapping("/employees")
