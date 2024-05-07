@@ -34,7 +34,7 @@ public class CompanyController {
 	
 	private CompanyRepository companyRepository;
 	
-	private SalaryService salaryService;
+	private SalaryService salaryService;	
 	
 
 	public CompanyController(CompanyMapper companyMapper, CompanyService companyService,
@@ -49,7 +49,7 @@ public class CompanyController {
 	//1. megoldás
 	@GetMapping
 	public List<CompanyDto> findAll(@RequestParam Optional<Boolean> full){
-		List<Company> companies = companyService.findAll();
+		List<Company> companies = companyService.findAll(full.orElse(false));
 		return mapCompanies(companies, full);
 	}
 
@@ -73,7 +73,7 @@ public class CompanyController {
 	
 	@GetMapping("/{id}")
 	public CompanyDto findById(@PathVariable long id, @RequestParam Optional<Boolean> full) {
-		Company company = companyService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		Company company = companyService.findById(id, full.orElse(false)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		
 		return full.orElse(false) 
 				? companyMapper.companyToDto(company)
