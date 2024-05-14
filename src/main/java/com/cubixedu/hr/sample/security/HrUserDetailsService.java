@@ -13,7 +13,7 @@ import com.cubixedu.hr.sample.model.Employee;
 import com.cubixedu.hr.sample.repository.EmployeeRepository;
 
 @Service
-public class HrDetailsService implements UserDetailsService {
+public class HrUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
